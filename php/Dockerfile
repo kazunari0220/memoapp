@@ -8,6 +8,15 @@ RUN apt-get update \
   && docker-php-ext-enable mysqli \
   && a2enmod rewrite
 
+# node.js関係
+RUN apt-get -y update
+RUN apt-get install -y \
+    curl \
+    gnupg
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+RUN npm install npm@latest -g
+
 # composerのインストール
 RUN curl -sS https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer \
